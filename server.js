@@ -31,9 +31,9 @@ app.get('/api/products', async (req, res) => {
       });
       res.json(response.data);
     } catch (error) {
-      console.error('Error obteniendo productos:', error.message);  // Log del mensaje de error
-      console.error('Error details:', error.response ? error.response.data : error); // Log más detallado
+      console.error('Error al obtener productos:', error);  // Log completo del error
       res.status(500).json({ error: 'Error al obtener productos', details: error.message });
     }
   });
+  
   
