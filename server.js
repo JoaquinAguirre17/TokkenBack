@@ -22,20 +22,18 @@ app.use(express.json());
 
 // Ruta para obtener productos desde Tiendanube
 app.get('/api/products', async (req, res) => {
-  try {
-    const response = await axios.get(`https://api.tiendanube.com/v1/${STORE_ID}/products`, {
-      headers: {
-        'Authorization': `bearer ${ACCESS_TOKEN}`,
-        'User-Agent': 'MyApp (email@example.com)',
-      },
-    });
-    res.json(response.data);  // Responde con los productos obtenidos
-  } catch (error) {
-    console.error('Error obteniendo productos:', error);
-    res.status(500).json({ error: 'Error al obtener productos' });
-  }
-});
-
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});
+    try {
+      console.log('Request received for products'); // Log para depurar
+      const response = await axios.get(`https://api.tiendanube.com/v1/${STORE_ID}/products`, {
+        headers: {
+          'Authorization': `bearer ${ACCESS_TOKEN}`,
+          'User-Agent': 'MyApp (email@example.com)',
+        },
+      });
+      res.json(response.data);  // Responde con los productos obtenidos
+    } catch (error) {
+      console.error('Error obteniendo productos:', error);
+      res.status(500).json({ error: 'Error al obtener productos' });
+    }
+  });
+  
